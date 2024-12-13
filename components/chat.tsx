@@ -49,7 +49,7 @@ export function Chat({
     data: streamingData,
   } = useChat({
     id,
-    body: { id, countryCode: selectedCountryCode, selectedLanguageCode, modelId: selectedModelId },
+    body: { id, countryCode: selectedCountryCode, languageCode: selectedLanguageCode, modelId: selectedModelId },
     initialMessages,
     onFinish: () => {
       mutate('/api/history');
