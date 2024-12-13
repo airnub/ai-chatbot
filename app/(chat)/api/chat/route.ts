@@ -52,7 +52,19 @@ export async function POST(request: Request) {
     id,
     messages,
     modelId,
-  }: { id: string; messages: Array<Message>; modelId: string } =
+    countryCode,
+    languageCode,
+    conversationMode,
+    responseFormat,
+  }: {
+    id: string;
+    messages: Array<Message>;
+    modelId: string;
+    countryCode: string;
+    languageCode: string;
+    conversationMode: string;
+    responseFormat: string;
+  } =
     await request.json();
 
   const session = await auth();
@@ -60,6 +72,13 @@ export async function POST(request: Request) {
   if (!session || !session.user || !session.user.id) {
     return new Response('Unauthorized', { status: 401 });
   }
+
+  // TODO: This is request body
+  // body: { id, countryCode: selectedCountryCode, languageCode: selectedLanguageCode, responseFormat: selectedResponseFormat, conversationMode: selectedConversationMode, modelId: selectedModelId },
+  console.log(countryCode);
+  console.log(languageCode);
+  console.log(conversationMode);
+  console.log(responseFormat);
 
   const model = models.find((model) => model.id === modelId);
 
@@ -77,6 +96,7 @@ export async function POST(request: Request) {
   const chat = await getChatById({ id });
 
   if (!chat) {
+    // TODO: Potential to use cheaper model here
     const title = await generateTitleFromUserMessage({ message: userMessage });
     await saveChat({ id, userId: session.user.id, title });
   }
