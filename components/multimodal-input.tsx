@@ -31,6 +31,7 @@ import { SuggestedActions } from './suggested-actions';
 import equal from 'fast-deep-equal';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from './ui/dropdown-menu';
 import { ResponseFormatSelector } from '@/components/response-format-selector'
+import { ConversationModeSelector } from '@/components/conversation-mode-selector'
 
 function PureMultimodalInput({
   chatId,
@@ -45,7 +46,8 @@ function PureMultimodalInput({
   append,
   handleSubmit,
   className,
-  selectedResponseFormat
+  selectedResponseFormat,
+  selectedConversationMode
 }: {
   chatId: string;
   input: string;
@@ -68,6 +70,7 @@ function PureMultimodalInput({
   ) => void;
   className?: string;
   selectedResponseFormat: string;
+  selectedConversationMode: string;
 }) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const { width } = useWindowSize();
@@ -263,6 +266,7 @@ function PureMultimodalInput({
       <AttachmentsButton fileInputRef={fileInputRef} isLoading={isLoading} />
 
       <ResponseFormatSelector selectedResponseFormat={selectedResponseFormat}/>
+      <ConversationModeSelector selectedConversationMode={selectedConversationMode}/>
     </div>
   );
 }
@@ -274,6 +278,7 @@ export const MultimodalInput = memo(
     if (prevProps.isLoading !== nextProps.isLoading) return false;
     if (!equal(prevProps.attachments, nextProps.attachments)) return false;
     if (prevProps.selectedResponseFormat !== nextProps.selectedResponseFormat) return false;
+    if (prevProps.selectedConversationMode !== nextProps.selectedConversationMode) return false;
 
     return true;
   },

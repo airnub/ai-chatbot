@@ -23,6 +23,7 @@ export function Chat({
   selectedCountryCode,
   selectedLanguageCode,
   selectedResponseFormat,
+  selectedConversationMode,
   selectedModelId,
   selectedVisibilityType,
   isReadonly,
@@ -32,6 +33,7 @@ export function Chat({
   selectedCountryCode: string;
   selectedLanguageCode: string;
   selectedResponseFormat: string;
+  selectedConversationMode: string;
   selectedModelId: string;
   selectedVisibilityType: VisibilityType;
   isReadonly: boolean;
@@ -51,7 +53,7 @@ export function Chat({
     data: streamingData,
   } = useChat({
     id,
-    body: { id, countryCode: selectedCountryCode, languageCode: selectedLanguageCode, responseFormat: selectedResponseFormat, modelId: selectedModelId },
+    body: { id, countryCode: selectedCountryCode, languageCode: selectedLanguageCode, responseFormat: selectedResponseFormat, conversationMode: selectedConversationMode, modelId: selectedModelId },
     initialMessages,
     onFinish: () => {
       mutate('/api/history');
@@ -121,6 +123,7 @@ export function Chat({
               setMessages={setMessages}
               append={append}
               selectedResponseFormat={selectedResponseFormat}
+              selectedConversationMode={selectedConversationMode}
             />
           )}
         </form>

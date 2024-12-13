@@ -124,3 +124,29 @@ export const responseFormats: Array<ResponseFormat> = [
     description: 'Graphical or visual response.',
   },
 ] as const;
+
+export interface ConversationMode {
+  code: string;
+  label: string;
+  description: string;
+}
+
+export const DEFAULT_CONVERSATION_MODE: string = 'guided';
+
+export const conversationModes: Array<ConversationMode> = [
+  {
+    code: 'beginner',
+    label: 'Beginner Mode',
+    description: 'Simplified responses with minimal questions, ideal for exploring options easily.',
+  },
+  {
+    code: 'guided',
+    label: 'Guided Mode',
+    description: 'Balanced interaction with questions to understand your needs and offer tailored suggestions.',
+  },
+  {
+    code: 'expert',
+    label: 'Expert Mode',
+    description: 'In-depth and technical responses with advanced customization options.',
+  },
+] as const;

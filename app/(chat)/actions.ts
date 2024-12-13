@@ -26,9 +26,14 @@ export async function saveLanguageCode(language: string) {
   cookieStore.set('choosr.language-code', language);
 }
 
-export async function saveResponseFormat(language: string) {
+export async function saveResponseFormat(responseFormat: string) {
   const cookieStore = await cookies();
-  cookieStore.set('choosr.response-format', language);
+  cookieStore.set('choosr.response-format', responseFormat);
+}
+
+export async function saveConversationMode(conversationMode: string) {
+  const cookieStore = await cookies();
+  cookieStore.set('choosr.conversation-mode', conversationMode);
 }
 
 export async function generateTitleFromUserMessage({
