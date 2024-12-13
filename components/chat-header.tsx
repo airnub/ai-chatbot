@@ -74,19 +74,18 @@ function PureChatHeader({
       )}
 
       {!isReadonly && (
-        <CountrySelector
-          selectedCountryCode={selectedCountryCode}
-          className="md:flex py-1.5 px-2 h-fit md:h-[34px] order-4 md:ml-auto"
+        <LanguageSelector
+          selectedLanguageCode={selectedLanguageCode}
+          className="order-1 md:order-4"
         />
       )}
 
       {!isReadonly && (
-        <LanguageSelector
-          selectedLanguageCode={selectedLanguageCode}
-          className="md:flex py-1.5 px-2 h-fit md:h-[34px] order-5 md:ml-auto"
+        <CountrySelector
+          selectedCountryCode={selectedCountryCode}
+          className="order-1 md:order-5"
         />
-      )}
-
+      )}      
     </header>
   );
 }

@@ -88,3 +88,39 @@ export const languages: Array<Langauge> = [
     description: ''
   },   
 ] as const;
+
+export interface ResponseFormat {
+  code: string;
+  label: string;
+  description: string;
+}
+
+export const DEFAULT_RESPONSE_FORMAT_CODE: string = 'default';
+
+export const responseFormats: Array<ResponseFormat> = [
+  {
+    code: 'default',
+    label: 'Default',
+    description: 'Standard human-readable response.',
+  },
+  {
+    code: 'json',
+    label: 'JSON',
+    description: 'Structured data in JSON format.',
+  },
+  {
+    code: 'csv',
+    label: 'CSV',
+    description: 'Tabular data in CSV format.',
+  },
+  {
+    code: 'python',
+    label: 'Python',
+    description: 'Python script or data snippet.',
+  },
+  {
+    code: 'image',
+    label: 'Image',
+    description: 'Graphical or visual response.',
+  },
+] as const;

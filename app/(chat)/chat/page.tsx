@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers';
 
 import { Chat } from '@/components/chat';
-import { DEFAULT_COUNTRY_CODE, countries, DEFAULT_LANGUAGE_CODE, languages, DEFAULT_MODEL_NAME, models } from '@/lib/ai/models';
+import { DEFAULT_COUNTRY_CODE, countries, DEFAULT_LANGUAGE_CODE, languages, DEFAULT_MODEL_NAME, models, responseFormats, DEFAULT_RESPONSE_FORMAT_CODE } from '@/lib/ai/models';
 import { generateUUID } from '@/lib/utils';
 
 export default async function Page() {
@@ -9,18 +9,22 @@ export default async function Page() {
 
   const cookieStore = await cookies();
 
-  const countryCodeFromCookie = cookieStore.get('country-code')?.value;
+  const countryCodeFromCookie = cookieStore.get('choosr.country-code')?.value;
   const selectedCountryCode =
     countries.find((country) => country.code === countryCodeFromCookie)?.code ||
     DEFAULT_COUNTRY_CODE;
 
-  const languageCodeFromCookie = cookieStore.get('language-code')?.value;
+  const languageCodeFromCookie = cookieStore.get('choosr.language-code')?.value;
   const selectedLanguageCode =
     languages.find((language) => language.code === languageCodeFromCookie)?.code ||
     DEFAULT_LANGUAGE_CODE;
 
-  const modelIdFromCookie = cookieStore.get('model-id')?.value;
-
+  const responseFormatFromCookie = cookieStore.get('choosr.response-format')?.value;
+  const selectedResponseFormat =
+    responseFormats.find((responseFormat) => responseFormat.code === responseFormatFromCookie)?.code ||
+    DEFAULT_RESPONSE_FORMAT_CODE;
+  
+  const modelIdFromCookie = cookieStore.get('choosr.model-id')?.value;
   const selectedModelId =
     models.find((model) => model.id === modelIdFromCookie)?.id ||
     DEFAULT_MODEL_NAME;
@@ -32,6 +36,7 @@ export default async function Page() {
       initialMessages={[]}
       selectedCountryCode={selectedCountryCode}
       selectedLanguageCode={selectedLanguageCode}
+      selectedResponseFormat={selectedResponseFormat}
       selectedModelId={selectedModelId}
       selectedVisibilityType="private"
       isReadonly={false}

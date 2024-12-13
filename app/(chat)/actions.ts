@@ -13,17 +13,22 @@ import { VisibilityType } from '@/components/visibility-selector';
 
 export async function saveModelId(model: string) {
   const cookieStore = await cookies();
-  cookieStore.set('model-id', model);
+  cookieStore.set('choosr.model-id', model);
 }
 
 export async function saveCountryCode(country: string) {
   const cookieStore = await cookies();
-  cookieStore.set('country-code', country);
+  cookieStore.set('choosr.country-code', country);
 }
 
 export async function saveLanguageCode(language: string) {
   const cookieStore = await cookies();
-  cookieStore.set('language-code', language);
+  cookieStore.set('choosr.language-code', language);
+}
+
+export async function saveResponseFormat(language: string) {
+  const cookieStore = await cookies();
+  cookieStore.set('choosr.response-format', language);
 }
 
 export async function generateTitleFromUserMessage({

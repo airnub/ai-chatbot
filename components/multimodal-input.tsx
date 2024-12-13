@@ -23,12 +23,14 @@ import { useLocalStorage, useWindowSize } from 'usehooks-ts';
 
 import { sanitizeUIMessages } from '@/lib/utils';
 
-import { ArrowUpIcon, PaperclipIcon, StopIcon } from './icons';
+import { ArrowUpIcon, PaperclipIcon, StopIcon, EyeIcon } from './icons';
 import { PreviewAttachment } from './preview-attachment';
 import { Button } from './ui/button';
 import { Textarea } from './ui/textarea';
 import { SuggestedActions } from './suggested-actions';
 import equal from 'fast-deep-equal';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from './ui/dropdown-menu';
+import { ResponseFormatSelector } from '@/components/response-format-selector'
 
 function PureMultimodalInput({
   chatId,
@@ -43,6 +45,7 @@ function PureMultimodalInput({
   append,
   handleSubmit,
   className,
+  selectedResponseFormat
 }: {
   chatId: string;
   input: string;
@@ -64,6 +67,7 @@ function PureMultimodalInput({
     chatRequestOptions?: ChatRequestOptions,
   ) => void;
   className?: string;
+  selectedResponseFormat: string;
 }) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const { width } = useWindowSize();
@@ -257,6 +261,8 @@ function PureMultimodalInput({
       )}
 
       <AttachmentsButton fileInputRef={fileInputRef} isLoading={isLoading} />
+
+      <ResponseFormatSelector selectedResponseFormat={selectedResponseFormat}/>
     </div>
   );
 }
@@ -267,6 +273,7 @@ export const MultimodalInput = memo(
     if (prevProps.input !== nextProps.input) return false;
     if (prevProps.isLoading !== nextProps.isLoading) return false;
     if (!equal(prevProps.attachments, nextProps.attachments)) return false;
+    if (prevProps.selectedResponseFormat !== nextProps.selectedResponseFormat) return false;
 
     return true;
   },
