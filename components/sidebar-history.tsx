@@ -74,13 +74,20 @@ const PureChatItem = ({
     initialVisibility: chat.visibility,
   });
 
+  const pathname = usePathname(); // Get the current pathname
+  const params = useParams(); // Get the current params (including country)
+
+  // Determine the base path (e.g., /ie/chat or /chat)
+  const basePath = params?.country ? `/${params.country}/chat` : '/chat';
+
   return (
     <SidebarMenuItem>
+
       <SidebarMenuButton asChild isActive={isActive}>
-        <Link href={`/chat/${chat.id}`} onClick={() => setOpenMobile(false)}>
+        <Link href={`${basePath}/${chat.id}`} onClick={() => setOpenMobile(false)}>
           <span>{chat.title}</span>
         </Link>
-      </SidebarMenuButton>
+      </SidebarMenuButton>      
 
       <DropdownMenu modal={true}>
         <DropdownMenuTrigger asChild>

@@ -20,12 +20,16 @@ import { VisibilityType } from './visibility-selector';
 export function Chat({
   id,
   initialMessages,
+  selectedCountryCode,
+  selectedLanguageCode,
   selectedModelId,
   selectedVisibilityType,
   isReadonly,
 }: {
   id: string;
   initialMessages: Array<Message>;
+  selectedCountryCode: string;
+  selectedLanguageCode: string;
   selectedModelId: string;
   selectedVisibilityType: VisibilityType;
   isReadonly: boolean;
@@ -45,7 +49,7 @@ export function Chat({
     data: streamingData,
   } = useChat({
     id,
-    body: { id, modelId: selectedModelId },
+    body: { id, countryCode: selectedCountryCode, selectedLanguageCode, modelId: selectedModelId },
     initialMessages,
     onFinish: () => {
       mutate('/api/history');
@@ -81,6 +85,8 @@ export function Chat({
       <div className="flex flex-col min-w-0 h-dvh bg-background">
         <ChatHeader
           chatId={id}
+          selectedCountryCode={selectedCountryCode}
+          selectedLanguageCode={selectedLanguageCode}
           selectedModelId={selectedModelId}
           selectedVisibilityType={selectedVisibilityType}
           isReadonly={isReadonly}

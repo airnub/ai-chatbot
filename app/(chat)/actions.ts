@@ -16,6 +16,16 @@ export async function saveModelId(model: string) {
   cookieStore.set('model-id', model);
 }
 
+export async function saveCountryCode(country: string) {
+  const cookieStore = await cookies();
+  cookieStore.set('country-code', country);
+}
+
+export async function saveLanguageCode(language: string) {
+  const cookieStore = await cookies();
+  cookieStore.set('language-code', language);
+}
+
 export async function generateTitleFromUserMessage({
   message,
 }: {

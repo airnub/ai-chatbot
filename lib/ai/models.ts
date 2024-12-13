@@ -23,3 +23,68 @@ export const models: Array<Model> = [
 ] as const;
 
 export const DEFAULT_MODEL_NAME: string = 'gpt-4o-mini';
+
+export interface Country {
+  code: string;
+  label: string;
+  currency: string;
+}
+
+export const DEFAULT_COUNTRY_CODE: string = 'ie';
+export const countries: Array<Country> = [
+  {
+    code: 'ie',
+    label: 'Ireland',
+    currency: 'EUR'
+  },
+  {
+    code: 'uk',
+    label: 'United Kingdom',
+    currency: 'GBP'
+  },
+  {
+    code: 'us',
+    label: 'United States',
+    currency: 'USD'
+  },
+] as const;
+
+export interface Langauge {
+  code: string;
+  label: string;
+  description: string;
+}
+
+export const DEFAULT_LANGUAGE_CODE: string = 'ie';
+export const languages: Array<Langauge> = [
+  {
+    code: 'en',
+    label: 'English',
+    description: ''
+  },
+  {
+    code: 'ga',
+    label: 'Irish',
+    description: ''
+  },
+  {
+    code: 'fr',
+    label: 'French',
+    description: ''
+  },
+  {
+    code: 'es',
+    label: 'Spanish',
+    description: ''
+  },  
+  {
+    code: 'de',
+    label: 'German',
+    description: ''
+  },
+  {
+    code: 'it',
+    label: 'Italian',
+    description: ''
+  },   
+] as const;
